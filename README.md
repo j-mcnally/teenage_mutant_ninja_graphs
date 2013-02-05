@@ -3,7 +3,7 @@ teenage_mutant_ninja_graphs
 
 Graph various rails data using Raphael and G.Raphael
 
-[<img src="//dl.dropbox.com/s/h9ei52it0dm3cp5/Screen%20Shot%202013-02-05%20at%205.18.11%20PM.png">]
+<img src="://dl.dropbox.com/s/h9ei52it0dm3cp5/Screen%20Shot%202013-02-05%20at%205.18.11%20PM.png">
 
 
 ## Installation
