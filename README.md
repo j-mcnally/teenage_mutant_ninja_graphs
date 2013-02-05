@@ -1,4 +1,4 @@
-# Teenage::Mutant::Ninga::Graphs
+
 
 TODO: Write a gem description
 
@@ -6,7 +6,7 @@ TODO: Write a gem description
 
 Add this line to your application's Gemfile:
 
-    gem 'teenage-mutant-ninga-graphs'
+    gem 'teenage_mutant_ninja_graphs'
 
 And then execute:
 
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install teenage-mutant-ninga-graphs
+    $ gem install teenage_mutant_ninja_graphs
 
 ## Usage
 

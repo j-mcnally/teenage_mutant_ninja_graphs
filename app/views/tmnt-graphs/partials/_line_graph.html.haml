@@ -1,0 +1,6 @@
+- tid = "graph-#{Time.now.usec}"
+
+.line_graph{:"data-xset" => "#{xset}", :"data-yset" => "#{yset}", :"data-legend" => "#{legend}", :"data-labels" => "#{labels}", :id => tid}
+
+:javascript
+  grapher.transform("#{tid}")

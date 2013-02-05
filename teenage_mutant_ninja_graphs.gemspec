@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'teenage-mutant-ninja-graphs/version'
+require 'teenage_mutant_ninja_graphs/version'
 
 Gem::Specification.new do |gem|
-  gem.name          = "teenage-mutant-ninja-graphs"
-  gem.version       = Teenage::Mutant::Ninga::Graphs::VERSION
+  gem.name          = "teenage_mutant_ninja_graphs"
+  gem.version       = TeenageMutantNinjaGraphs::VERSION
   gem.authors       = ["Justin McNally"]
   gem.email         = ["justin@kohactive.com"]
   gem.description   = %q{TODO: Write a gem description}
@@ -16,4 +16,8 @@ Gem::Specification.new do |gem|
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
+  gem.add_runtime_dependency "jquery-rails"
+  gem.add_runtime_dependency "underscore-rails"
+  gem.add_runtime_dependency "coffee-rails"
+  gem.add_runtime_dependency "recurrence"
 end
