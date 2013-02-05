@@ -96,10 +96,26 @@ Grapher = (->
     yset = $(elem).data("yset");
     xset = $(elem).data("xset");
     labels = $(elem).data("labels");
+
+    xtype = $(elem).data("xtype");
+
     #if x coords are not number map them to a numeric index
 
     #assign each possible x value a numerical index
-    possibleX = _.unique(_.flatten(xset))
+
+    if (xtype == "date")
+      possibleX = _.unique(_.flatten(xset))
+      possibleX = possibleX
+      .map((val,idx) ->
+          return new Date(val);
+      ).sort((date1, date2) ->
+        return 0 if date1 == date2
+        return (date1 > date2) ? -1 : 1;
+      ).map((val,idx) ->
+        return val.format("mm/dd/yyyy")
+      )
+    
+
 
     largestY = _.max(_.flatten yset, (i) ->
       return i;
@@ -108,13 +124,19 @@ Grapher = (->
 
     xdata = [];
 
-    txset = _.map xset, (ary) =>
-      return @numericMapping(ary, possibleX)
+
+    if (xtype == "date")
+      txset = _.map xset, (ary) =>
+        return @numericMapping(ary, possibleX)
+      xsteps = possibleX.length - 1
+    else
+      txset = xset
+      xsteps = nil
 
 
 
     #find the maximum value
-    xsteps = possibleX.length - 1
+    
     
     #scale y to 10 steps 
 
@@ -124,7 +146,6 @@ Grapher = (->
     ycoords = yset;
     xcoords = txset
 
-    console.log $(elem)
     lines = undefined
     txtattr = undefined
     txtattr = font: "12px sans-serif"
@@ -165,18 +186,20 @@ Grapher = (->
   
   Grapher::customizeXAxis = (lines, r, elem, possibleX) ->
     xpoints = lines.axis[0].text.items
+    xtype = $(elem).data("xtype");
 
-    r.setSize(r.width + 60, r.height);
+    if (xtype == "date")
+      r.setSize(r.width + 60, r.height);
 
-    for item in xpoints
-      index = item.attr("text")
-      console.log(item.attr("text"));
-      if index % 1 == 0
-        item.attr("text", possibleX[index])
-        item.attr({transform: "r45"});
-        item.attr({x: item.attr("x") + 25});
-      else
-        item.attr("text", "")
+      for item in xpoints
+        index = item.attr("text")
+        console.log(item.attr("text"));
+        if index % 1 == 0
+          item.attr("text", possibleX[index])
+          item.attr({transform: "r45"});
+          item.attr({x: item.attr("x") + 25});
+        else
+          item.attr("text", "")
 
 
   Grapher::drawPieGraph = (r) ->
