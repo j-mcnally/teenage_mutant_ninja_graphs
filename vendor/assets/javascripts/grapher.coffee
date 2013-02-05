@@ -48,13 +48,15 @@ Grapher = (->
     type = "line"  unless type?
     txtattr = font: "12px sans-serif"
     chart.labels = raph.set()
-    h = raph.height - 124
+    h = 20
     sy = h
     longest = _.max(labels, (l) ->
       l.length
     )
 
-    x = $(elem).width()-(9 * longest.length)
+    raph.setSize(raph.width + 20 + (9 * longest.length), raph.height)
+
+    x = $(elem).width() + 20
 
     raph.rect(x - 10, sy - 10, 9 * longest.length, 20 * labels.length).attr
       fill: "rgba(255,255,255,.7)"
@@ -99,6 +101,9 @@ Grapher = (->
     #assign each possible x value a numerical index
     possibleX = _.unique(_.flatten(xset))
 
+    largestY = _.max(_.flatten yset, (i) ->
+      return i;
+    );
 
 
     xdata = [];
@@ -108,7 +113,13 @@ Grapher = (->
 
 
 
-    console.log(txset)
+    #find the maximum value
+    xsteps = possibleX.length - 1
+    
+    #scale y to 10 steps 
+
+    ysteps = Math.ceil(largestY / Math.ceil(largestY / 10));
+
 
     ycoords = yset;
     xcoords = txset
@@ -120,6 +131,8 @@ Grapher = (->
     lines = r.linechart(20, 10, $(elem).width()-20, 260, xcoords, ycoords,
       nostroke: false
       axis: "0 0 1 1"
+      axisxstep: xsteps,
+      axisystep: ysteps,
       symbol: "circle"
       smooth: false
     ).hoverColumn(->
@@ -157,6 +170,7 @@ Grapher = (->
 
     for item in xpoints
       index = item.attr("text")
+      console.log(item.attr("text"));
       if index % 1 == 0
         item.attr("text", possibleX[index])
         item.attr({transform: "r45"});
