@@ -20,7 +20,13 @@ And then execute:
 
 we are able to use it like this. but i haven't tested the api much past it.
 
-    = lineGraph({:records => @model.activities, :x => :created_at, :y => :_group_sum_for_x, :grouping => :user_id, :labelProc => Proc.new{|x| User.find(x).full_name rescue x} })
+    = lineGraph({
+        :records => @model.activities, 
+        :x => :created_at, 
+        :y => :_group_sum_for_x, 
+        :grouping => :user_id, 
+        :labelProc => Proc.new{|x| User.find(x).full_name rescue x} 
+        })
 
 
 
