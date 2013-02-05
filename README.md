@@ -1,4 +1,4 @@
-teenage_mutant_ninja_graphs
+Teenage Mutant Ninja Graphs
 ===========================
 
 Graph various rails data using Raphael and G.Raphael
